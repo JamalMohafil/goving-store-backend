@@ -2,7 +2,7 @@ const asyncHandler = require("express-async-handler");
 const SubCategory = require("../models/SubCategory");
 const Product = require("../models/Product");
 const Category = require("../models/Category");
-
+const mongoose = require("mongoose");
 const getSubcategoriesStatistics = asyncHandler(async (req, res) => {
   try {
     // حساب عدد التصنيفات الفرعية
@@ -33,20 +33,25 @@ const getSubCategories = asyncHandler(async (req, res) => {
   const limit = parseInt(req.query.limit) || 6;
   const page = parseInt(req.query.page) || 1;
   const search = req.query.search?.trim();
-  const filter = req.query.filter;
+  const filter = req.query.filter; // هذا هو ID التصنيف الرئيسي
 
+  // إنشاء استعلام البحث
   const searchQuery = search
     ? {
-        $or: [{ name: { $regex: search, $options: "i" } }],
+        name: { $regex: search, $options: "i" },
       }
     : {};
 
+  // إنشاء استعلام الفلتر
   let filterQuery = {};
   if (filter && filter !== "all") {
-    // تأكد من أن هذا هو تعريف التصنيفات الرئيسية
-    filterQuery = { category: filter }; // استخدم filter مباشرة إذا كان معرف تصنيف رئيسي
+    // تحويل ال ID إلى ObjectId وإضافته للفلتر
+    filterQuery = {
+      category: new mongoose.Types.ObjectId(filter),
+    };
   }
 
+  // دمج الاستعلامات
   const query = {
     ...searchQuery,
     ...filterQuery,
@@ -64,12 +69,6 @@ const getSubCategories = asyncHandler(async (req, res) => {
         },
       },
       {
-        $unwind: {
-          path: "$categoryDetails",
-          preserveNullAndEmptyArrays: true,
-        },
-      },
-      {
         $lookup: {
           from: "products",
           localField: "_id",
@@ -80,6 +79,18 @@ const getSubCategories = asyncHandler(async (req, res) => {
       {
         $addFields: {
           productCount: { $size: "$products" },
+          // استخراج أول عنصر من مصفوفة التصنيفات
+          category: { $arrayElemAt: ["$categoryDetails", 0] },
+        },
+      },
+      // إزالة الحقول غير الضرورية
+      {
+        $project: {
+          _id: 1,
+          name: 1,
+          icon: 1,
+          category: 1,
+          productCount: 1,
         },
       },
       { $skip: (page - 1) * limit },
@@ -91,12 +102,12 @@ const getSubCategories = asyncHandler(async (req, res) => {
       SubCategory.countDocuments(query),
     ]);
 
+    // تنسيق النتائج
     const formattedSubCategories = subCategories.map((subCategory) => ({
       id: subCategory._id,
       name: subCategory.name,
-      mainCat: subCategory.category,
       icon: subCategory.icon,
-      category: subCategory.categoryDetails || null,
+      category: subCategory.category,
       productCount: subCategory.productCount,
     }));
 
@@ -106,8 +117,12 @@ const getSubCategories = asyncHandler(async (req, res) => {
       currentPage: page,
       totalPages: Math.ceil(totalCount / limit),
     });
-  } catch (e) {
-    return res.status(400).json(e);
+  } catch (error) {
+    console.error("Error in getSubCategories:", error);
+    return res.status(500).json({
+      message: "Error fetching subcategories",
+      error: error.message,
+    });
   }
 });
 
@@ -159,13 +174,12 @@ const createSubCategory = asyncHandler(async (req, res) => {
       },
       { new: true } // لتحديث الكائن المرجعي الجديد بعد التحديث
     );
-    
 
     // إذا لم يتم العثور على التصنيف الرئيسي
     if (!updatedCategory) {
       return res.status(404).json({ message: "Category not found." });
     }
-    
+
     // إرجاع التصنيف الفرعي الجديد مع التصنيف المحدث
     res.status(201).json({
       status: 201,

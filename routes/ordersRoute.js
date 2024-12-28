@@ -7,6 +7,7 @@ const {
   getOrderInformation,
   getAdminOrderInformation,
   updateOrderStatus,
+  deleteOrder,
 } = require("../controllers/orderControllers");
 const router = express.Router();
 const { isAdmin, isUser } = require("../utils/middleware");
@@ -18,5 +19,6 @@ router.get("/getOrderThanks/:id", isUser, getOrderThanks);
 router.get("/adminOrder/:id", isAdmin, getAdminOrderInformation);
 router.put("/updateStatus/:id", isAdmin, updateOrderStatus);
 router.get("/:id", isUser, getOrderInformation);
+router.delete("/:id", isAdmin, deleteOrder);
 
 module.exports = router;

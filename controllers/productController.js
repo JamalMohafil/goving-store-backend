@@ -299,11 +299,7 @@ const createProduct = asyncHandler(async (req, res) => {
 
         // تصفية الـ inputs
         parsedInputs = parsedInputs.filter(
-          (input) =>
-            input &&
-            typeof input === "object" &&
-            input.name &&
-            input.description
+          (input) => input && typeof input === "object" && input.name
         );
       } catch (error) {
         console.error("Error parsing inputs:", error);
@@ -431,13 +427,34 @@ const updateProduct = asyncHandler(async (req, res) => {
 
     // حساب الكمية
     let finalQuantity = quantity; // القيمة الافتراضية
-    const parsedProps = props ? JSON.parse(props) : null;
+    let parsedProps;
 
-    if (parsedProps?.details?.length) {
-      finalQuantity = parsedProps.details.reduce((total, item) => {
-        return total + (item.quantity || 0); // إجمالي الكميات
-      }, 0);
+    try {
+      parsedProps = props ? JSON.parse(props) : null;
+    } catch (error) {
+      parsedProps = null; // إذا كان النص غير صالح، اجعل parsedProps null
     }
+    console.log(`Final Quantity: ${finalQuantity}`);
+    if (
+      parsedProps?.title === "" ||
+      parsedProps?.details?.length === 0 ||
+      parsedProps?.details?.quantity === 0
+    ) {
+      parsedProps = null;
+      finalQuantity = quantity;
+    } else {
+      if (parsedProps?.details?.length) {
+        finalQuantity = parsedProps.details.reduce((total, item) => {
+          const itemQuantity =
+            typeof item.quantity === "number" ? item.quantity : 0;
+          return total + itemQuantity; // إجمالي الكميات
+        }, 0);
+      }
+    }
+
+    console.log(parsedProps);
+    console.log(`Final Quantity: ${finalQuantity}`);
+
     // تحديث البيانات
     existingProduct.name = name;
     existingProduct.description = description || "";
@@ -467,9 +484,7 @@ const updateProduct = asyncHandler(async (req, res) => {
       }
 
       // تصفية العناصر التي لا تحتوي على اسم أو وصف
-      parsedInputs = parsedInputs.filter(
-        (item) => item.name && item.description
-      );
+      parsedInputs = parsedInputs.filter((item) => item.name);
     }
 
     existingProduct.inputs = parsedInputs;
@@ -582,7 +597,6 @@ const mainDashboardStatistics = asyncHandler(async (req, res) => {
     return res.status(500).json({ status: 500, error: e.message });
   }
 });
-
 
 const getProductsByCategoryHome = asyncHandler(async (req, res) => {
   try {

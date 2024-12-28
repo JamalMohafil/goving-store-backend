@@ -239,7 +239,7 @@ const updateOrderStatus = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
     const { status } = req.body;
-    
+
     // التأكد من أن الـ status مبدئيًا ليس فارغًا
     if (!status) {
       return res.status(400).json({ error: "Status is required", status: 400 });
@@ -275,7 +275,21 @@ const updateOrderStatus = asyncHandler(async (req, res) => {
     });
   }
 });
-
+const deleteOrder = asyncHandler(async (req, res) => {
+  try {
+    const { id } = req.params;
+    const order = await Order.findByIdAndDelete(id);
+    if (!order) {
+      return res.status(404).json({ error: "Order not found", status: 404 });
+    }
+    if(req.user.role !== "admin"){
+      return res.status(401).json({ error: "Unauthorized", status: 401 });
+    }
+    res.status(200).json({ message: "Order deleted successfully", status: 200 });
+  } catch (e) {
+    res.status(500).json({ error: "Try again later", status: 500 });
+  }
+});
 module.exports = {
   getOrdersStatistics,
   getOrders,
@@ -283,6 +297,6 @@ module.exports = {
   getOrderThanks,
   getOrderInformation,
   getAdminOrderInformation,
-  updateOrderStatus,
+  updateOrderStatus,deleteOrder,
   ORDER_STATUS, // تصدير الثوابت للاستخدام في أماكن أخرى
 };
