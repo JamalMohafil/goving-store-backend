@@ -1,9 +1,9 @@
 # Goving Store - Frontend
 
 ## 📌 Introduction
-Welcome to **Goving Store**, an online store specializing in digital products such as games, game top-ups, and digital cards. This repository contains the **Frontend** code of the store, built using **Next.js 15** to ensure high performance and a smooth user experience.
+Welcome to **Goving Store**, an online store specializing in digital products such as games, game top-ups, and digital cards. This repository contains the **Backend** code of the store, built using **Express.js** to ensure high performance and a smooth user experience.
 
-🔗 **Backend Repository Link**: [Goving Store Backend](https://github.com/JamalMohafil/goving-store-backend)
+🔗 **Frontend Repository Link**: [Goving Store Backend](https://github.com/JamalMohafil/goving-store-frontend)
 
 ## 🚀 Technologies Used
 - **Next.js 15** - A powerful React framework for building frontend applications.
@@ -11,14 +11,12 @@ Welcome to **Goving Store**, an online store specializing in digital products su
 - **Express.js** - Manages backend operations.
 - **MongoDB / Prisma** - Database for managing products and users.
 
-## 📷 Store Preview
-> You can add store interface images here after uploading them to GitHub or any image hosting platform.
 
 ## 📂 How to Run the Project
 1. **Clone the Repository:**
    ```sh
-   git clone https://github.com/JamalMohafil/goving-store-front-end.git
-   cd goving-store-front-end
+   git clone https://github.com/JamalMohafil/goving-store-back-end.git
+   cd goving-store-back-end
    ```
 2. **Install Dependencies:**
    ```sh
@@ -28,8 +26,8 @@ Welcome to **Goving Store**, an online store specializing in digital products su
    ```sh
    npm run dev
    ```
-4. **Open the Store in Browser:**
-   - Go to `http://localhost:3000`
+4. **Open the API:**
+   - Go to `http://localhost:5000`
 
 ## 👨‍💻 About the Developer
 I am **Jamal Mohafil**, a web developer specializing in **Next.js** and **Express.js**, working on building robust projects to enhance the Arabic digital experience.
@@ -51,18 +49,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE.txt) 
 ---
 
 ## 📌 مقدمة
-مرحبًا بك في **Goving Store**، المتجر الإلكتروني المخصص لبيع المنتجات الرقمية مثل الألعاب، بطاقات الشحن، والمحتوى الرقمي. هذا المستودع يحتوي على الكود الخاص بالـ **Frontend** للمتجر، والذي تم بناؤه باستخدام **Next.js 15** لضمان أداء سريع وتجربة مستخدم سلسة.
+مرحبًا بك في **Goving Store**، المتجر الإلكتروني المخصص لبيع المنتجات الرقمية مثل الألعاب، بطاقات الشحن، والمحتوى الرقمي. هذا المستودع يحتوي على الكود الخاص بالـ **Backend** للمتجر، والذي تم بناؤه باستخدام **Express.js** لضمان أداء سريع وتجربة مستخدم سلسة.
 
-🔗 **رابط مستودع الباك-إند**: [Goving Store Backend](https://github.com/JamalMohafil/goving-store-backend)
+🔗 **رابط مستودع الفروند-إند**: [Goving Store FrontEnd](https://github.com/JamalMohafil/goving-store-frontend)
 
 ## 🚀 التقنيات المستخدمة
 - **Next.js 15** - إطار عمل React المتقدم لبناء الواجهات الأمامية القوية.
 - **TypeScript** - لتوفير أمان أكبر للبيانات وتحسين تجربة التطوير.
 - **Express.js** - لإدارة عمليات الباك-إند.
 - **MongoDB / Prisma** - كقاعدة بيانات لإدارة المنتجات والمستخدمين.
-
-## 📷 صور من المتجر
-> يمكنك هنا إضافة صور لواجهة المتجر بعد رفعها على GitHub أو أي منصة استضافة صور.
 
 ## 📂 كيفية تشغيل المشروع
 1. **استنساخ المستودع:**
@@ -78,8 +73,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE.txt) 
    ```sh
    npm run dev
    ```
-4. **فتح المتجر في المتصفح:**
-   - انتقل إلى `http://localhost:3000`
+4. **فتح API:**
+   - انتقل إلى `http://localhost:5000`
 
 ## 👨‍💻 عن المطور
 أنا **جمال محفل**، مطور ويب متخصص في **Next.js** و **Express.js**، وأعمل على بناء مشاريع قوية تهدف إلى تحسين تجربة المستخدم العربي في المجال الرقمي.
