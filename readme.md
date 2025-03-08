@@ -39,6 +39,7 @@ I am **Jamal Mohafil**, a web developer specializing in **Next.js** and **Expres
 - **GitHub:** [JamalMohafil](https://github.com/JamalMohafil)
 - **Twitter:** [Jamal Mohafil](https://x.com/Jamal_Mohafil)
 - **YouTube:** [JamalMohafil](https://www.youtube.com/@JamalMohafil)
+- **LinkedIn:** [Jamal Mohafil](https://www.linkedin.com/in/jamal-mohafil/)
 
 ## ⭐ Support the Project
 If you liked this project and found it useful, don't forget to support it by giving a ⭐ on GitHub! 😊
@@ -84,6 +85,7 @@ If you liked this project and found it useful, don't forget to support it by giv
 - **GitHub:** [JamalMohafil](https://github.com/JamalMohafil)
 - **Twitter:** [Jamal Mohafil](https://x.com/Jamal_Mohafil)
 - **Youtube:** [JamalMohafil](https://www.youtube.com/@JamalMohafil)
+- **LinkedIn:** [Jamal Mohafil](https://www.linkedin.com/in/jamal-mohafil/)
 
 ## ⭐ دعم المشروع
 إذا أعجبك هذا المشروع وساعدك في عملك، لا تنسَ دعمه من خلال ⭐ على GitHub! 😊
