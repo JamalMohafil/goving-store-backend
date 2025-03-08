@@ -62,8 +62,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE.txt) 
 ## 📂 كيفية تشغيل المشروع
 1. **استنساخ المستودع:**
    ```sh
-   git clone https://github.com/JamalMohafil/goving-store-front-end.git
-   cd goving-store-front-end
+   git clone https://github.com/JamalMohafil/goving-store-back-end.git
+   cd goving-store-back-end
    ```
 2. **تثبيت الحزم:**
    ```sh
