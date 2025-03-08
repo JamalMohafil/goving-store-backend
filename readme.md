@@ -45,7 +45,7 @@ I am **Jamal Mohafil**, a web developer specializing in **Next.js** and **Expres
 If you liked this project and found it useful, don't forget to support it by giving a ⭐ on GitHub! 😊
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.txt) file for details.
 
 
 ---
@@ -93,7 +93,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ا## الترخيص
 
-هذا المشروع مرخص بموجب رخصة MIT - راجع ملف LICENSE للمزيد من التفاصيل.
+هذا المشروع مرخص بموجب رخصة MIT - راجع ملف [LICENSE](LICENSE.txt) للمزيد من التفاصيل.
 
 ## ⭐ دعم المشروع
 إذا أعجبك هذا المشروع وساعدك في عملك، لا تنسَ دعمه من خلال ⭐ على GitHub! 😊
